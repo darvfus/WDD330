@@ -29,3 +29,22 @@ export function getParam(param) {
 
   return parameter;
 }
+
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+  if(clear) {
+    parentElement.innerHTML = "";
+  }
+  const html = list.map(templateFn).join("");
+  parentElement.insertAdjacentHTML(position, html);
+}
+
+export default class ProductList {
+
+  renderList(list) {
+    renderListWithTemplate (
+      (item) => this.productCardTemplate(item),
+      this.listElement,
+      list
+    );
+  }
+}
