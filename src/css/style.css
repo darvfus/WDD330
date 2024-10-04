@@ -119,6 +119,23 @@ button {
   max-width: 600px;
   margin: auto;
 }
+
+/* ... existing styles ... */
+
+.total-amount {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  text-align: right;
+}
+
+.total-amount h3 {
+  margin: 0;
+  color: #333;
+  font-size: 1.2em;
+}
+
 .products {
   padding: 0.5em;
 }

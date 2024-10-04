@@ -40,7 +40,8 @@ export default class ProductDetails {
     }
     addToCart() {
       let cart = getLocalStorage("so-cart");
-        if (!Array.isArray(cart)) {
+     
+      if (!Array.isArray(cart)) {
             cart = cart ? [cart] : [];
         }
         // Check if the product is already in the cart
