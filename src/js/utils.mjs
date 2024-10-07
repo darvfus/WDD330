@@ -9,10 +9,12 @@ export function qs(selector, parent = document) {
 export function getLocalStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
+
 // save data to local storage
 export function setLocalStorage(key, data) {
   localStorage.setItem(key, JSON.stringify(data));
 }
+
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
@@ -21,6 +23,7 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
+
 // get parameter from url
 export function getParam(param) {
   const queryString = window.location.search;
@@ -30,21 +33,18 @@ export function getParam(param) {
   return parameter;
 }
 
-export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
-  if(clear) {
+// function to take a list of objects and a template and insert the objects as HTML into the DOM
+export function renderListWithTemplate(
+  templateFn,
+  parentElement,
+  list,
+  position = "afterbegin",
+  clear = false
+) {
+  const htmlStrings = list.map(templateFn);
+  // if clear is true clear out the contents of the parent.
+  if (clear) {
     parentElement.innerHTML = "";
   }
-  const html = list.map(templateFn).join("");
-  parentElement.insertAdjacentHTML(position, html);
-}
-
-export default class ProductList {
-
-  renderList(list) {
-    renderListWithTemplate (
-      (item) => this.productCardTemplate(item),
-      this.listElement,
-      list
-    );
-  }
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
 }
