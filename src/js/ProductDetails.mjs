@@ -24,6 +24,7 @@ export default class ProductDetails {
         this.productId = productId;
         this.product = {};
         this.dataSource = dataSource;
+
     }
     async init() {
         // use our datasource to get the details for the current product. findProductById will return a promise!
@@ -53,6 +54,7 @@ export default class ProductDetails {
           cart.push(this.product);
       }
       setLocalStorage("so-cart", cart);
+
     }
     renderProductDetails(selector) {
         const element = document.querySelector(selector);
