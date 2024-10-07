@@ -28,6 +28,13 @@ export default class ProductList {
   }
 
   renderList(list) {
-    renderListWithTemplate(productCardTemplate, this.listElement, list);
+    let filteredList = this.filterList(list)
+    renderListWithTemplate(productCardTemplate, this.listElement, filteredList);
+  }
+
+  filterList(list) {
+    let filteredList = list.filter((name,i) => i < 4);
+
+    return filteredList;
   }
 }
