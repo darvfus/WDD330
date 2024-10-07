@@ -1,5 +1,5 @@
 // imports
-import { setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
     return `<section class="product-detail"> <h3>${product.Brand.Name}</h3>
@@ -38,7 +38,21 @@ export default class ProductDetails {
           .addEventListener("click", this.addToCart.bind(this));
     }
     addToCart() {
-        setLocalStorage("so-cart", this.product);
+      let cart = getLocalStorage("so-cart");
+      if (!Array.isArray(cart)) {
+          cart = cart ? [cart] : [];
+      }
+      // Check if the product is already in the cart
+      const existingProductIndex = cart.findIndex(item => item.Id === this.product.Id);
+      if (existingProductIndex >= 0) {
+          // If the product exists, increment its quantity
+          cart[existingProductIndex].quantity = (cart[existingProductIndex].quantity || 1) + 1;
+      } else {
+          // If it's a new product, add it with quantity 1
+          this.product.quantity = 1;
+          cart.push(this.product);
+      }
+      setLocalStorage("so-cart", cart);
     }
     renderProductDetails(selector) {
         const element = document.querySelector(selector);
