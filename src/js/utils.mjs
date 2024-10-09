@@ -46,5 +46,42 @@ export function renderListWithTemplate(
   if (clear) {
     parentElement.innerHTML = "";
   }
-  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+  
+  const html = list.map(templateFn).join("");
+  parentElement.insertAdjacentHTML(position, html);
+}
+
+export default class ProductList {
+
+  renderList(list) {
+    renderListWithTemplate (
+      (item) => this.productCardTemplate(item),
+      this.listElement,
+      list
+    );
+  }
+}
+
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.insertAdjacentHTML('afterbegin', template);
+  if (callback) {
+    callback(data);
+  }
+}
+
+export async function loadTemplate(path) {
+  const html = await fetch(path).then(convertToText);
+  const template = document.createElement('template');
+  template.innerHTML = html;
+  return template;
+}
+
+export async function loadHeaderFooter() {
+  const headerTemplate = await loadTemplate('../partials/header.html');
+  const footerTemplate = await loadTemplate('../partials/footer.html');
+  const headerElement = document.getElementById('main-header');
+  const footerElement = document.getElementById('main-footer');
+  
+  renderWithTemplate(headerTemplate, headerElement);
+  renderWithTemplate(footerTemplate, footerElement);
 }
