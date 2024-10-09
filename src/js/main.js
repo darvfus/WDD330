@@ -1,7 +1,7 @@
-// imports
+//imports
 import ProductData from "./ProductData.mjs";
-import ProductListing from "./ProductList.mjs";
-
-const tentData = ProductData("tents");
+import ProductList from "./ProductList.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
- loadHeaderFooter();
+
+const tentData = ProductData("tents");;
+loadHeaderFooter();
