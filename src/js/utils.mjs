@@ -46,9 +46,10 @@ export function renderListWithTemplate(
   if (clear) {
     parentElement.innerHTML = "";
   }
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
   
-  const html = list.map(templateFn).join("");
-  parentElement.insertAdjacentHTML(position, html);
+  // const html = list.map(templateFn).join("");
+  // parentElement.insertAdjacentHTML(position, html);
 }
 
 export default class ProductList {
