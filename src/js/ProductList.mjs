@@ -1,7 +1,6 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
-  console.table(product);
   return `<li class="product-card">
   <a href="product_pages/index.html?product=${product.Id}">
   <img
