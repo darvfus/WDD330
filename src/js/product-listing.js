@@ -10,7 +10,13 @@ const listElement = document.querySelector('.product-list');
 const categoryNameElement = document.querySelector('.category-name');
 
 // Update the category name in the heading
-categoryNameElement.textContent = category.charAt(0).toUpperCase() + category.slice(1);
-
-const myList = new ProductList(category, dataSource, listElement);
-myList.init();
+if (searchTerm) {
+    categoryNameElement.textContent = `Search Results for: ${searchTerm}`;
+    const myList = new ProductList(searchTerm, dataSource, listElement);
+    myList.init();
+  } else {
+    const category = getParam('category');
+    categoryNameElement.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+    const myList = new ProductList(category, dataSource, listElement);
+    myList.init();
+  }
