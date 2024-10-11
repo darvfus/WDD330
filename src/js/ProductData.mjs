@@ -4,10 +4,9 @@ export default class ProductData {
   constructor() {}
 
   async getData(category) {
-    const response = await fetch(baseURL + `products/search/${category}`);
+    const response = await fetch(`${baseURL}products/search/${category}`);
     const data = await convertToJson(response);
-    console.log(data.Result[0]);
-    return data.Result;
+    return data.Result; // Assuming the API returns the products in the Result property
   }
 
   async findProductById(id) {
