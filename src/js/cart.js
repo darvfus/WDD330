@@ -1,3 +1,4 @@
+
 class Cart {
     constructor() {
       this.items = JSON.parse(localStorage.getItem('cart')) || [];
@@ -39,3 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
+import ShoppingCart from "./ShoppingCart.mjs";
+
+loadHeaderFooter();
+
+const cart = new ShoppingCart("so-cart", ".product-list");
+cart.renderCartContents();
