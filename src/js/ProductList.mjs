@@ -28,17 +28,17 @@ export default class ProductList {
   renderList(list) {
     const filteredList = this.filterProducts(list);
     renderListWithTemplate(
-      (item) => this.productCardTemplate(item),
+      (item) => productCardTemplate(item),
       this.listElement,
       filteredList
     );
     this.displayTotalAmount(filteredList);
   }
 
-  filterProducts(list, count = 4) {
-    return list
-      .filter(item => item.category === 'tents')
-      .slice(0, count);
+  filterProducts(list) {
+    let filteredList = list.filter((item, i) => i < 4)
+
+    return filteredList;
   }
 
   productCardTemplate(product) {
