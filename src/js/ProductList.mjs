@@ -1,3 +1,4 @@
+import cart from './cart.js';
 import { baseURL } from '../js/ProductData.mjs';
 export default class ProductList {
   constructor(category, dataSource, listElement) {
@@ -26,6 +27,12 @@ export default class ProductList {
         <h2 class="card__name">${product.NameWithoutBrand}</h2>
         <p class="product-card__price">$${product.FinalPrice}</p>
       </a>
+      <button class="add-to-cart" data-id="${product.Id}">Add to Cart</button>
     </li>`;
+  }
+  getProductById(productId) {
+    return this.dataSource.getData(this.category).then(products => {
+      return products.find(product => product.Id === productId);
+    });
   }
 }
