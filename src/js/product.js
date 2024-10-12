@@ -1,3 +1,16 @@
+
+import { getParam, loadHeaderFooter } from "./utils.mjs";
+import ProductData from "./ProductData.mjs";
+import ProductDetails from "./ProductDetails.mjs";
+
+loadHeaderFooter();
+
+const dataSource = new ProductData("tents");
+const productId = getParam("product");
+
+const product = new ProductDetails(productId, dataSource);
+product.init();
+
 // Sample product data (replace this with your actual data source)
 const products = [
   {
@@ -116,3 +129,4 @@ class Product {
 // Initialize the product page with a specific product ID
 const product = new Product(1); // Pass the product ID you want to display
 product.init();
+
