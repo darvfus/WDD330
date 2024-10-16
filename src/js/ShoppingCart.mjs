@@ -26,12 +26,7 @@ export default class ShoppingCart {
   }
   renderCartContents() {
     const cartItems = getLocalStorage(this.key);
-    if (cartItems && cartItems.length > 0) {
-        const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-        document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
-      } else {
-        document.querySelector(this.parentSelector).innerHTML =
-          `<p> Your cart is empty </p>`;
-      }
+    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
   }
 }
