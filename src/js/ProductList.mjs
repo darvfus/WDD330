@@ -13,7 +13,18 @@ export default class ProductList {
   }
 
   renderList(list) {
-    this.listElement.innerHTML = list.map(product => this.productCardTemplate(product)).join('');
+    const filteredList = this.filterProducts(list);
+    renderListWithTemplate(
+      (item) => productCardTemplate(item),
+      this.listElement,
+      filteredList
+    );
+    this.displayTotalAmount(filteredList);
+  }
+
+  filterProducts(list, count = 4) {
+    return list
+      .filter((item, i) => i < count);
   }
 
   productCardTemplate(product) {
